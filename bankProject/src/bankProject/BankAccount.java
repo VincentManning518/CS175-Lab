@@ -9,14 +9,17 @@ public class BankAccount {
 		*/
 		
 		
-		   private double balance;
+		   private double balance, rate, interest;
 
 		   /**
-		      Constructs a bank account with 0 balance.
+		      Constructs a bank account with balance of "initialBal".
+		 * @return 
 		   */
-		   public BankAccount()
+		   public BankAccount(double initialBal, double interestPct )
 		   {
-		      balance = 0;
+		      balance = initialBal;
+		      rate = interestPct;
+		      System.out.println("Created new account with $1000.00 balance and interest rate of 0.05");
 		   }
 
 		   /**
@@ -26,24 +29,44 @@ public class BankAccount {
 		   public void deposit(double amount)
 		   {
 		      balance = balance + amount;
+		      System.out.println("Deposited: " + amount);
 		   }
 
 		   /**
-		      Makes a withdrawal from this account, or charges a penalty if
-		      sufficient funds are not available.
+		      Makes a withdrawal from this account, 
 		      @param amount the amount of the withdrawal
 		   */
 		   public void withdraw(double amount)
 		   {
-		      balance = balance - amount;
+			   if(amount < balance)
+			   {
+				   balance = balance - amount;
+				   System.out.println("Withdrew: " + amount);
+			   }
+			   else
+			   {
+				   System.out.println("Insufficient funds to support withdrawal");
+			   }
 		   }
-		   /**
-		      Gets the current balance of this bank account.
-		      @return the current balance
-		   */
+		
+		   public void calcInterest(String decision)
+		   {
+			   if (decision.contains("Y"))
+			   {
+			   interest = balance * rate;
+			   System.out.println("Interest: " + interest);
+			   }
+			   else
+			   {
+				   
+			   }
+		   }
+		   
+		   
 		   public double getBalance()
 		   {
-		      return balance;
+		      return balance + interest;
 		   }
+		      
 }
 

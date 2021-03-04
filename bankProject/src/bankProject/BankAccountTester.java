@@ -8,16 +8,27 @@ public class BankAccountTester {
 
 		Scanner in = new Scanner(System.in);
 		
-		// Takes initial balance input and deposits it into a bank account of 0 balance
+		double DepAmt, WithAmt, startBal, intRate;
 		
-		double StartBal, DepAmt, WithAmt;
+		// Creates a bank account with a balance of 1000 and interestPct of 0.05
 		
-		System.out.print("Please input your initial balance: ");
-		StartBal = in.nextDouble();
-		
-		BankAccount myBankAccount = new BankAccount();
+		System.out.print("Enter amount to start the account: ");
+		startBal = in.nextDouble();
 		System.out.println(" ");
-		myBankAccount.deposit(StartBal);
+		
+		System.out.print("Enter the interest rate for this account: ");
+		intRate = in.nextDouble();
+		System.out.println(" ");
+		
+		BankAccount myBankAccount = new BankAccount(startBal, intRate);
+		System.out.println(" ");
+		
+		// Deposits an amount input by the user
+		
+		System.out.print("Please input your deposit amount: ");
+		DepAmt = in.nextDouble();
+		
+		myBankAccount.deposit(DepAmt);
 		
 		// Withdraws an amount input by the user
 		
@@ -27,18 +38,19 @@ public class BankAccountTester {
 		myBankAccount.withdraw(WithAmt);
 		System.out.println(" ");
 		
-		// Deposits an amount input by the user
+		// Calculates the interest, if the user decides so, and prints it
 		
-		System.out.print("Please input your deposit amount: ");
-		DepAmt = in.nextDouble();
-			
-		myBankAccount.deposit(DepAmt);
-		System.out.println(" ");
+		String decision; 
+		System.out.print("Would you like to calculate your interest? Y/N: ");
+		decision = in.next();
+		
+		myBankAccount.calcInterest(decision);
+
 		
 		// Returns the current balance of the bank account
 		
-		 System.out.print("Current Balance: ");
-		 System.out.println(myBankAccount.getBalance());
+		System.out.print("Current Balance: ");
+		System.out.println(myBankAccount.getBalance());
 		
 		
 	}
