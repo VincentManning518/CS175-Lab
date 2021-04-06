@@ -1,41 +1,40 @@
 package bankProject;
-
+import java.util.Scanner;
 public class BankAccount {
 	  
-		// TODO Auto-generated method stub
-		/**
-		   A bank account has a balance and a mechanism for
-		   applying interest or fees at the end of the month.
-		*/
-		
-		
+	
 		   private double balance, rate, interest;
 
-		   /**
-		      Constructs a bank account with balance of "initialBal".
-		 * @return 
-		   */
-		   public BankAccount(double initialBal, double interestPct )
+			Scanner in = new Scanner(System.in);
+
+		   public BankAccount()
 		   {
+			   System.out.print("Enter amount to start the account: ");
+				double initialBal = in.nextDouble();
+				System.out.println(" ");
+				
+				System.out.print("Enter the interest rate for this account: ");
+				double interestPct = in.nextDouble();
+				System.out.println(" ");
+				
 		      balance = initialBal;
 		      rate = interestPct;
-		      System.out.println("Created new account with $1000.00 balance and interest rate of 0.05");
+		      System.out.println("Created new account with $" + initialBal + " balance and interest rate of " + interestPct);
+		   }
+		   
+		   public double getInterest()
+		   {
+			   return rate;
 		   }
 
-		   /**
-		      Makes a deposit into this account.
-		      @param amount the amount of the deposit
-		   */
+		
 		   public void deposit(double amount)
 		   {
 		      balance = balance + amount;
 		      System.out.println("Deposited: " + amount);
 		   }
 
-		   /**
-		      Makes a withdrawal from this account, 
-		      @param amount the amount of the withdrawal
-		   */
+	
 		   public void withdraw(double amount)
 		   {
 			   if(amount < balance)
@@ -49,17 +48,19 @@ public class BankAccount {
 			   }
 		   }
 		
-		   public void calcInterest(String decision)
+		   public double calcInterest(String decision)
 		   {
 			   if (decision.contains("Y"))
 			   {
 			   interest = balance * rate;
-			   System.out.println("Interest: " + interest);
 			   }
 			   else
 			   {
 				   
 			   }
+			return interest;
+			
+		
 		   }
 		   
 		   
